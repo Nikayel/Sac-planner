@@ -32,7 +32,7 @@ public class Semester {
         for (int grade : grades) {
             total += grade;
         }
-        return total / (double) grades.size();
+        return Math.round((total / (double) grades.size()) * 100.0) / 100.0;
     }
 
     // Display remaining classes (dummy implementation)

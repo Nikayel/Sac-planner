@@ -1,19 +1,13 @@
 import java.util.ArrayList;
 
 public class Advisor {
-    private String name;
-    private String email;
+    public ArrayList<String> advisorNames;
+    public ArrayList<String> advisorEmails;
 
     // Constructor
-    public Advisor(String name, String email) {
-        this.name = name;
-        this.emaiil = email;
-    }
-    public String getName(){
-        return name;
-    }
-    public String getEmail(){
-        return email;
+    public Advisor() {
+        advisorNames = new ArrayList<>();
+        advisorEmails = new ArrayList<>();
     }
 
     // Add an advisor
@@ -23,9 +17,11 @@ public class Advisor {
 
     // Suggest classes (dummy implementation)
     public void suggestClasses(Degree degree) {
-        System.out.println("Suggested Classes:");
+        int suggestions = 0;
         for (Class requiredClass : degree.requiredClasses) {
+            if (suggestions >= 4) break;
             System.out.println("- " + requiredClass.getClassName());
+            suggestions++;
         }
     }
 }
