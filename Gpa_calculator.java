@@ -14,6 +14,7 @@ public class Gpa_calculator {
     // Method to calculate weighted GPA
     public static double calculateWeightedGPA(ArrayList<Integer> grades, ArrayList<Double> weights) {
         if (grades.isEmpty() || weights.isEmpty() || grades.size() != weights.size()) return 0.0;
+
         double totalWeightedScore = 0.0;
         double totalWeight = 0.0;
 
@@ -22,6 +23,6 @@ public class Gpa_calculator {
             totalWeight += weights.get(i);
         }
 
-        return Math.round((totalWeightedScore / totalWeight) * 100.0) / 100.0;
+        return totalWeight > 0 ? Math.round((totalWeightedScore / totalWeight) * 100.0) / 100.0 : 0.0;
     }
 }

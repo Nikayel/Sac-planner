@@ -1,26 +1,29 @@
 import java.util.ArrayList;
 
 public class Semester {
-    public int semesterNumber;
+    public int semesterYear;
     public String semesterName;
     public ArrayList<Integer> grades;
+    public ArrayList<String> classes;
 
     // Constructor
     public Semester(int semesterNumber, String semesterName) {
-        this.semesterNumber = semesterNumber;
+        this.semesterYear = semesterNumber;
         this.semesterName = semesterName;
         grades = new ArrayList<>();
+        classes = new ArrayList<>();
     }
 
     // Add a grade for the semester
-    public void addGrade(int grade) {
+    public void addGrade(String className, int grade) {
         grades.add(grade);
+        classes.add(className);
     }
 
-    // Check pass or fail (assuming pass is >= 60)
+    // Check pass or fail (assuming pass is >= 70)
     public boolean passOrFail() {
         for (int grade : grades) {
-            if (grade < 60) return false;
+            if (grade < 70) return false;
         }
         return true;
     }
@@ -35,9 +38,11 @@ public class Semester {
         return Math.round((total / (double) grades.size()) * 100.0) / 100.0;
     }
 
-    // Display remaining classes (dummy implementation)
-    public void remainingClasses(Degree degree) {
-        System.out.println("Remaining Classes:");
-        degree.listRequiredClasses(); // Assuming the degree stores remaining classes
+    // Display classes and grades for the semester
+    public void displayClasses() {
+        System.out.println("Classes for Semester " + semesterYear + " (" + semesterName + "):");
+        for (int i = 0; i < classes.size(); i++) {
+            System.out.println("- " + classes.get(i) + ": " + grades.get(i));
+        }
     }
 }

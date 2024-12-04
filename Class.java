@@ -4,7 +4,7 @@ public class Class {
     private String requiredGrade; // Required grade to pass
 
     // Constructor
-    public Class(String className, String requiredGrade) {
+    public Class(String className) {
         this.className = className;
         this.requiredGrade = requiredGrade;
     }
