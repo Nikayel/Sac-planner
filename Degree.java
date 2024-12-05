@@ -14,7 +14,10 @@ public class Degree {
 
     public void listRequiredClasses() {
         for (Class c : requiredClasses) {
-            System.out.println("Class Name: " + c.getClassName() + ", Required Grade: " + c.requiredGrade());
+            System.out.println("Class Name: " + c.getClassName());
         }
+    }
+    public ArrayList<Class> getRequiredClasses() {
+        return requiredClasses;
     }
 }

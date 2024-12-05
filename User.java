@@ -1,28 +1,18 @@
-import java.util.Scanner;
-
 public class User {
-    public String userName;
+    private String userName;
 
-    // Constructor
+    // Constructor to create a user
     public User(String userName) {
         this.userName = userName;
     }
 
-    // Getter for userName
     public String getUserName() {
         return userName;
     }
 
-    // Setter for userName
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    // Static method to take user input
-    public static User createUser() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter your name: ");
-        String name = scanner.nextLine();
-        return new User(name);
+    // Method to get the advisor's contact information
+    public void getAdvisorContact() {
+        Advisor advisor = Advisor.getInstance();  // Get the Singleton instance
+        advisor.displayAdvisors();  // Display the list of advisors with their emails
     }
 }

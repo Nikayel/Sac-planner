@@ -4,6 +4,9 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        Advisor advisor = Advisor.getInstance();
+        // Create a user and ask for advisor contact information
+
 
         // Create user
         System.out.println("Welcome to the Degree Planner!");
@@ -30,7 +33,7 @@ public class Main {
         System.out.println("15. English");
         System.out.println("16. Music");
         System.out.println("17. Philosophy");
-        System.out.println("18. Phsychology");
+        System.out.println("18. Psychology");
         System.out.println("19. Kinesiology");
         System.out.println("20. Biological Sciences");
         System.out.print("Enter your choice (1-20): ");
@@ -69,7 +72,7 @@ public class Main {
                 break;
             case 5:
                 degree.addClass(new Class("Linear Algebra"));
-                degree.addClass(new Class("Combinatrics"));
+                degree.addClass(new Class("Combinations"));
                 degree.addClass(new Class("Vector Analysis"));
                 degree.addClass(new Class("Set Theory"));
                 degree.addClass(new Class("Modern Algebra"));
@@ -161,7 +164,7 @@ public class Main {
             case 18:
                 degree.addClass(new Class("Neuroscience"));
                 degree.addClass(new Class("Cross-Cultural Psychology"));
-                degree.addClass(new Class("Behavorial Research Methods"));
+                degree.addClass(new Class("Behavioral Research Methods"));
                 degree.addClass(new Class("Evolutionary Psychology"));
                 degree.addClass(new Class("Methods of Psychology"));
                 break;
@@ -211,7 +214,7 @@ public class Main {
                     break;
 
                 case 2:
-                    Advisor advisor = new Advisor();
+
                     advisor.addAdvisor("Dr. Smith", "smith@university.edu");
                     advisor.addAdvisor("Dr. Johnson", "johnson@university.edu");
                     advisor.addAdvisor("Dr. Lee", "lee@university.edu");
@@ -227,8 +230,8 @@ public class Main {
                         System.out.println("\nClass Suggestions:");
                         advisor.suggestClasses(degree);
                     } else if (advisorChoice == 2) {
-                        System.out.println("\nAdvisor Contact Information:");
-                        advisor.displayAdvisors();
+                        // User asks for advisor's contact details
+                        user.getAdvisorContact();
                     } else {
                         System.out.println("Invalid option.");
                     }
@@ -317,29 +320,35 @@ public class Main {
                     scanner.nextLine(); // Consume newline
 
                     if (gpaChoice == 1) {
-                        System.out.println("Your overall unweighted GPA: " +
-                                semesters.stream()
-                                        .mapToDouble(Semester::GPA)
-                                        .average()
-                                        .orElse(0.0));
+                        // Collect unweighted GPAs for each semester
+                        ArrayList<Integer> semesterGPAs = new ArrayList<>();
+                        for (Semester sem : semesters) {
+                            semesterGPAs.add((int) Math.round(sem.GPA() * 100)); // Convert GPA to integer scale (e.g., 4.0 -> 400)
+                        }
+
+                        // Use Gpa_calculator to calculate unweighted GPA
+                        double unweightedGPA = Gpa_calculator.calculateUnweightedGPA(semesterGPAs);
+                        System.out.println("Your overall unweighted GPA: " + unweightedGPA);
                     } else if (gpaChoice == 2) {
                         System.out.println("Enter weights for each semester:");
+                        ArrayList<Integer> semesterGPAs = new ArrayList<>();
                         ArrayList<Double> weights = new ArrayList<>();
+
                         for (Semester sem : semesters) {
                             System.out.println("Semester: " + sem.semesterName);
+                            semesterGPAs.add((int) Math.round(sem.GPA() * 100)); // Convert GPA to integer scale
                             System.out.print("Weight: ");
                             weights.add(scanner.nextDouble());
                         }
-                        double totalWeightedGPA = 0.0;
-                        for (int i = 0; i < semesters.size(); i++) {
-                            totalWeightedGPA += semesters.get(i).GPA() * weights.get(i);
-                        }
-                        double weightedGPA = totalWeightedGPA / weights.stream().mapToDouble(w -> w).sum();
+
+                        // Use Gpa_calculator to calculate weighted GPA
+                        double weightedGPA = Gpa_calculator.calculateWeightedGPA(semesterGPAs, weights);
                         System.out.println("Your overall weighted GPA: " + weightedGPA);
                     } else {
                         System.out.println("Invalid choice.");
                     }
                     break;
+
 
                 case 5:
                     running = false;
@@ -353,4 +362,5 @@ public class Main {
 
         scanner.close();
     }
+
 }
