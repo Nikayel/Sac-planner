@@ -302,12 +302,20 @@ public class Main {
                                     System.out.println("Classes: " + sem.grades);
                                 }
                                 break;
+                                
+                
 
                             default:
                                 System.out.println("Invalid choice.");
                                 break;
+                            
                         }
+                        if(degree.requiredClasses.isEmpty()) {
+                        	addingClasses = false;
+                        }
+                        
                     }
+                             
                     break;
 
 
@@ -348,15 +356,21 @@ public class Main {
                         System.out.println("Invalid choice.");
                     }
                     break;
-
-
+                    
+                
                 case 5:
+                	addingClasses = false;
                     running = false;
                     break;
 
                 default:
                     System.out.println("Invalid option. Try again.");
                     break;
+            }
+           
+            if(degree.requiredClasses.isEmpty()) {
+            	System.out.println("\nCongratulations " + userName + "! You completed all your required classes and have recieved your degree");
+            	running = false;
             }
         }
 
