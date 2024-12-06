@@ -5,9 +5,9 @@ public class Gpa_calculator {
     // Method to map percentage grades to GPA on a 4.0 scale
     private static double mapGradeToGPA(int grade) {
         if (grade >= 90) return 4.0;
-        else if (grade >= 80) return 3.0;
-        else if (grade >= 70) return 2.0;
-        else if (grade >= 60) return 1.0;
+        else if (grade >= 80 && grade < 90) return 3.0;
+        else if (grade >= 70 && grade < 80) return 2.0;
+        else if (grade >= 60 && grade < 70) return 1.0;
         else return 0.0;
     }
 
