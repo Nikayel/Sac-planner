@@ -279,7 +279,7 @@ public class Main {
                                 for (int i = 0; i < degree.requiredClasses.size(); i++) {
                                     Class requiredClass = degree.requiredClasses.get(i);
                                     if (requiredClass.getClassName().equalsIgnoreCase(className)) {
-                                        if (grade >= 60) { // Assuming 60 is the passing grade
+                                        if (grade >= 70) { // Assuming 60 is the passing grade
                                             System.out.println("You passed " + requiredClass.getClassName() + "!");
                                             degree.requiredClasses.remove(i);
                                         } else {
